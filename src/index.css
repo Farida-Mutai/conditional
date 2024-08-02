@@ -23,3 +23,7 @@ button {
   background-color: #61dafb;
   color: #282c34;
 }
+
+.Login, .Home {
+  text-align: center;
+}
