@@ -1,31 +1,36 @@
 
 import React, { useState } from 'react';
-import CategorySelector from './CategorySelector';
-import RecipeList from './RecipeList';
-import NoRecipes from './NoRecipes';
 import './App.css';
 
 function App() {
-  const [category, setCategory] = useState('breakfast');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const recipes = {
-    breakfast: ['Pancakes', 'Waffles', 'Omelette'],
-    lunch: ['Grilled Cheese', 'Caesar Salad', 'Chicken Wrap'],
-    dinner: ['Spaghetti ', 'Chicken Stir-fry', 'Beef Tacos'],
-    dessert: ['Chocolate Cake', 'Apple Pie', 'Ice Cream']
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
 
   return (
-    <div className="app-container">
-      <CategorySelector setCategory={setCategory} />
-      {recipes[category].length > 0 ? (
-        <RecipeList recipes={recipes[category]} />
-      ) : (
-        <NoRecipes />
-      )}
+    <div className="App">
+      <header className="App-header">
+        <h1>React Login Demo</h1>
+        {isLoggedIn ? (
+          <div>
+            <p>Welcome, User!</p>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <p>Please log in to continue.</p>
+            <button onClick={handleLogin}>Login</button>
+          </div>
+        )}
+      </header>
     </div>
   );
 }
 
 export default App;
-
